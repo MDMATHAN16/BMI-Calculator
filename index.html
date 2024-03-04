@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Coded by Murugesan -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calc</title>
+</head>
+
+<body>
+    <div class="form">
+        <img src="images.png" class="image" id="image" alt="logo">
+        <div class="con">
+            <h1 class="name">BMI Calculator</h1>
+            <label for="Height" class="ht on">Enter Yout Height</label><br>
+            <input type="text" class="Height" id="Height" placeholder="Enter Yout Height"><br>
+            <label for="Weight" class="wt">Enter Yout Weight</label><br>
+            <input type="text" class="Weight" id="Weight" placeholder="Enter Yout Weight"><br>
+            <button class="convert" id="convert" onclick="cal()">convert</button>
+            <p class="result" id="result"></p>
+            <h2 class="sts" id="sts"></h2>
+        </div>
+    </div>
+    <footer style="margin-left: 175px; margin-top: 10px; color: white; font-weight: bold;">Designed by MD_Media :)</footer>
+    <style>
+        html {
+            margin: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to right, #3f5efb, #fc466b);
+        }
+        
+        .image {
+            float: left;
+            max-width: 270px;
+            margin-top: 60px;
+            margin-left: 25px;
+        }
+        
+        .form {
+            border: 1px dashed black;
+            padding: 2px;
+            box-sizing: border-box;
+            box-shadow: 4px white;
+            height: 400px;
+            width: 600px;
+            border-radius: 15px 0px;
+            background-color: white;
+        }
+        
+        .form .name {
+            margin-top: 20px;
+            font-weight: bold;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        .con {
+            display: flex;
+            float: right;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-right: 60px;
+            margin-top: 10px;
+        }
+        
+        .sts {
+            margin-left: 100px;
+        }
+        
+        .form .ht,
+        .wt,
+        .result {
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        .sts {
+            font-size: 20px;
+            margin-left: -550px;
+            margin-top: -45px;
+        }
+        
+        .form .Height,
+        .Weight {
+            height: 25px;
+            width: 200px;
+            border: 2px solid black;
+        }
+        
+        .form .convert {
+            margin-top: 15px;
+            height: 40px;
+            width: 200px;
+            font-size: 15px;
+            color: blue;
+            border-radius: 25px;
+        }
+    </style>
+    <script>
+        function cal() {
+            let v = document.getElementById("Height");
+            let v2 = document.getElementById("Weight");
+            v.style.border = "2px solid black";
+            v2.style.border = "2px solid black";
+            let Height = document.getElementById("Height").value;
+            let Weight = document.getElementById("Weight").value;
+            if (Height.length == 0) {
+                v.style.border = "2px solid red";
+            } else if (Weight.length == 0) {
+                v2.style.border = "2px solid red";
+            } else {
+                document.getElementById("convert").style.backgroundColor = "green";
+                document.getElementById("convert").style.color = "white";
+                let BMI = parseFloat(Weight) / ((parseFloat(Height) / 100) ** 2);
+                document.getElementById("result").innerHTML = "Your BMI Value is " + (BMI.toFixed(2));
+                let res = (BMI.toFixed(2));
+                let m = document.getElementById("sts");
+                let img = document.getElementById("image");
+                if (res < 18.5) {
+                    m.innerHTML = "Under Weight";
+                    m.style.color = "blue";
+                    img.src = 'under.jpg';
+                } else if (res >= 18.5 && res < 25.9) {
+                    m.innerHTML = "Healthy";
+                    m.style.color = "green";
+                    img.src = 'healthy.jpg';
+                } else if (res < 30.0) {
+                    m.innerHTML = "Obesity";
+                    m.style.color = "Red";
+                    img.src = 'obc.jpg';
+                } else {
+                    m.innerHTML = "Obese Range";
+                    m.style.color = "black";
+                    img.src = 'images.png';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
